@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>
+        Select stuff
+    </title>
+</head>
+
+<body>
+    <label for="cat">Choose a Category:</label>
+    <select name="cat" id="cat">
+      <option value="GK">General Knowledge</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="video_games">video_games</option>
+      <option value="nature">nature</option>
+      <option value="computers">computers</option>
+      <option value="math">math</option>
+      <option value="sports">sports</option>
+      <option value="history">history</option>
+      <option value="politics">politics</option>
+      <option value="gadgets">gadgets</option>
+      <option value="anime">anime</option>
+    </select>
+    <br><br><br>
+    <label for="ty">Choose a type:</label>
+    <select name="type" id="ty">
+      <option value="MCQ">Multiple choices</option>
+      <option value="True_or_False">True or False</option>
+    </select>
+
+    <button onclick="setoff()">submit choices</button>
+
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+</html>
+<script>
+    function setoff() {
+        var cate = document.getElementById("cat").value;
+        var tye = document.getElementById("ty").value;
+        var xx = [cate, tye];
+        var respon_json = {
+            "deets": xx
+        }
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "http://127.0.0.1:5000/quiz/send",
+            traditional: "true",
+            data: JSON.stringify(respon_json),
+            dataType: "json",
+            success: function(response) {
+                // window.open('/player');
+            }
+        });
+    }
+</script>
